@@ -5,10 +5,17 @@
   <groupId>carsharing</groupId>
   <artifactId>Carsharing</artifactId>
   <version>1.0</version>
-  <packaging>jar</packaging>
+  <packaging>pom</packaging>
 
   <name>Caring</name>
   <url>http://maven.apache.org</url>
+
+  <modules>
+    <module>server-module</module>
+    <module>client-module</module>
+    <module>admin-module</module>
+    <module>common-module</module>
+  </modules>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
