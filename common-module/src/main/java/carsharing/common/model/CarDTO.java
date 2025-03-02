@@ -1,4 +1,4 @@
-package carsharing.common;
+package carsharing.common.model;
 
 public class CarDTO {
 
@@ -6,18 +6,32 @@ public class CarDTO {
     private String brand;
     private String model;
 
+    private Double pricePerMinute;
+
     private Integer totalRentalTime;
     private Double totalEarned;
 
-    public CarDTO(Integer id, String brand, String model, Double totalEarned, Integer totalRentalTime) {
+    private CarTypeDTO carType;
+
+    public CarDTO(Integer id, String brand, String model, Double pricePerMinute, Double totalEarned, Integer totalRentalTime, CarTypeDTO carType) {
         this.brand = brand;
         this.id = id;
         this.model = model;
+        this.pricePerMinute = pricePerMinute;
         this.totalEarned = totalEarned;
         this.totalRentalTime = totalRentalTime;
+        this.carType = carType;
     }
 
     public CarDTO() {}
+
+    public Double getPricePerMinute() {
+        return pricePerMinute;
+    }
+
+    public void setPricePerMinute(Double pricePerMinute) {
+        this.pricePerMinute = pricePerMinute;
+    }
 
     public String getBrand() {
         return brand;

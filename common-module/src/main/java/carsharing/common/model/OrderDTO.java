@@ -1,4 +1,4 @@
-package carsharing.common;
+package carsharing.common.model;
 
 public class OrderDTO {
 

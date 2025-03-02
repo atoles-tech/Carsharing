@@ -19,10 +19,24 @@
     </properties>
 
     <dependencies>
+
         <dependency>
             <groupId>carsharing.common</groupId>
             <artifactId>common-module</artifactId>
             <version>${project.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.7.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>6.6.9.Final</version>
+        </dependency>
+
     </dependencies>
 </project>

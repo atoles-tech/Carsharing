@@ -1,23 +1,58 @@
-package carsharing.common;
+package carsharing.common.model;
+
+import java.util.Arrays;
 
 public class UserDTO {
 
     private Integer id;
+
+    private String login;
+    private String hashPassword;
+    private byte[] salt;
+
     private String firstName;
     private String lastName;
 
     private Integer totalRentalTime;
     private Double totalSpent;
 
-    public UserDTO(Integer id ,String firstName, String lastName,Integer totalRentalTime, Double totalSpent) {
-        this.firstName = firstName;
+    public UserDTO(Integer id, String firstName, String lastName, Integer totalRentalTime, Double totalSpent, String login, String hashPassword, byte[] salt) {
         this.id = id;
+        this.firstName = firstName;
         this.lastName = lastName;
         this.totalRentalTime = totalRentalTime;
         this.totalSpent = totalSpent;
+        this.login = login;
+        this.hashPassword = hashPassword;
+        this.salt = salt;
     }
 
-    public UserDTO() {}
+    public UserDTO() {
+    }
+
+    public byte[] getSalt() {
+        return salt;
+    }
+
+    public void setSalt(byte[] salt) {
+        this.salt = salt;
+    }
+
+    public String getHashPassword() {
+        return hashPassword;
+    }
+
+    public void setHashPassword(String hashPassword) {
+        this.hashPassword = hashPassword;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
 
     public String getFirstName() {
         return firstName;
