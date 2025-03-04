@@ -1,30 +1,27 @@
 package carsharing.client;
 
-import carsharing.common.model.AdminDTO;
-import carsharing.common.util.Connection;
-import carsharing.common.util.Message;
-import carsharing.common.util.MessageType;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 
-import java.io.IOException;
-import java.net.Socket;
-import java.util.ArrayList;
-import java.util.List;
 
-public class App {
-    public static void main( String[] args ) throws IOException {
-        try (Socket socket = new Socket("localhost", 12345)) {
+public class App extends Application {
 
-            Connection connection = new Connection(socket);
-            Message message = (Message) connection.receive();
-
-            if(message.getData() instanceof List list){
-                list.stream().forEach(System.out::println);
-            }
-
-        } catch (IOException e) {
-            System.err.println("Ошибка при подключении к серверу: " + e.getMessage());
-        } catch (ClassNotFoundException e){
-            System.err.println("Получен неизвестный класс: " + e.getMessage());
-        }
+    @Override
+    public void start(Stage stage) {
+        String javaVersion = System.getProperty("java.version");
+        String javafxVersion = System.getProperty("javafx.version");
+        Label l = new Label("Привет, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
+        Scene scene = new Scene(new StackPane(l), 640, 480);
+        stage.setScene(scene);
+        stage.show();
     }
+
+    public static void main(String[] args) {
+        launch();
+    }
+
 }
+

@@ -10,5 +10,10 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="hibernate.show_sql">true</property>
         <mapping class="carsharing.server.model.User"/>
+        <mapping class="carsharing.server.model.Admin"/>
+        <mapping class="carsharing.server.model.CarClass"/>
+        <mapping class="carsharing.server.model.Car"/>
+        <mapping class="carsharing.server.model.Order"/>
+        <mapping class="carsharing.server.model.ServiceRecord"/>
     </session-factory>
 </hibernate-configuration>

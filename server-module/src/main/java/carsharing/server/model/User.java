@@ -15,16 +15,19 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true, length = 30)
     private String login;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 70)
     private String hashPassword;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 70)
     private String salt;
 
+    @Column(length = 30)
     private String firstName;
+
+    @Column(length = 30)
     private String lastName;
 
     @Column(name = "total_rental_time", nullable = false)
@@ -51,6 +54,11 @@ public class User {
 
     public UserDTO toUserDTO(){
         return new UserDTO(id,firstName,lastName,totalRentalTime,totalSpent,login,hashPassword,salt);
+    }
+
+    public static User toUser(UserDTO user){
+        return new User(user.getId(), user.getFirstName(),user.getLastName(), user.getTotalRentalTime(),
+                user.getTotalSpent(), user.getLogin(),user.getHashPassword(),user.getSalt());
     }
 
     public static List<UserDTO> listToUserDTO(List<User> users){

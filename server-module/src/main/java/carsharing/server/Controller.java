@@ -1,14 +1,15 @@
 package carsharing.server;
 
-import carsharing.common.model.UserDTO;
+import carsharing.common.model.CarTypeDTO;
 import carsharing.common.util.Connection;
-import carsharing.server.db.EmployeManager;
+import carsharing.server.db.EmployeeManager;
+import carsharing.server.model.*;
 import carsharing.server.util.ClientHandler;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.List;
+import java.time.LocalDateTime;
 
 public class Controller {
 
@@ -16,7 +17,12 @@ public class Controller {
 
     public void run() {
 
-        EmployeManager.init();
+        EmployeeManager.init();
+
+
+        Car car = EmployeeManager.getInstance().getCarById(1);
+
+        EmployeeManager.getInstance().saveServiceRecord(new ServiceRecord(car,LocalDateTime.now(),100.,"Замена масла и фильтров"));
 
         try (ServerSocket server = new ServerSocket(PORT)) {
 

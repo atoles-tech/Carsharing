@@ -1,6 +1,8 @@
 package carsharing.common.model;
 
-public class CarDTO {
+import java.io.Serializable;
+
+public class CarDTO implements Serializable {
 
     private Integer id;
     private String brand;

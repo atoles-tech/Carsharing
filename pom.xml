@@ -12,9 +12,9 @@
 
   <modules>
     <module>server-module</module>
-    <module>client-module</module>
     <module>admin-module</module>
     <module>common-module</module>
+    <module>client-module</module>
   </modules>
 
   <properties>

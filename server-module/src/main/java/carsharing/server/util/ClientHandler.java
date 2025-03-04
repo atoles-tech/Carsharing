@@ -1,15 +1,12 @@
 package carsharing.server.util;
 
-import carsharing.common.model.AdminDTO;
 import carsharing.common.util.Connection;
 import carsharing.common.util.Message;
 import carsharing.common.util.MessageType;
-import carsharing.server.db.EmployeManager;
+import carsharing.server.db.EmployeeManager;
 
 import java.io.EOFException;
 import java.io.IOException;
-import java.util.Collection;
-import java.util.List;
 
 public class ClientHandler extends Thread {
 
@@ -24,7 +21,7 @@ public class ClientHandler extends Thread {
 
         try {
             while (true) {
-                Message message = new Message(EmployeManager.getInstance().getUsers(), MessageType.ANSWER);
+                Message message = new Message(EmployeeManager.getInstance().getUsers(), MessageType.ANSWER);
 
                 connection.send(message);
 
