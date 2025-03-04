@@ -1,14 +1,16 @@
 package carsharing.common.model;
 
-public class AdminDTO {
+import java.io.Serializable;
+
+public class AdminDTO implements Serializable {
 
     private Integer id;
 
     private String login;
     private String hashPassword;
-    private byte[] salt;
+    private String salt;
 
-    public AdminDTO(Integer id, String login, String hashPassword, byte[] salt) {
+    public AdminDTO(Integer id, String login, String hashPassword, String salt) {
         this.id = id;
         this.login = login;
         this.hashPassword = hashPassword;
@@ -18,11 +20,21 @@ public class AdminDTO {
     public AdminDTO() {
     }
 
-    public byte[] getSalt() {
+    @Override
+    public String toString() {
+        return "AdminDTO{" +
+                "hashPassword='" + hashPassword + '\'' +
+                ", id=" + id +
+                ", login='" + login + '\'' +
+                ", salt='" + salt + '\'' +
+                '}';
+    }
+
+    public String getSalt() {
         return salt;
     }
 
-    public void setSalt(byte[] salt) {
+    public void setSalt(String salt) {
         this.salt = salt;
     }
 

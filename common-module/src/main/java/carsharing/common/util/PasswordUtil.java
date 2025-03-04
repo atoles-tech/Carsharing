@@ -7,21 +7,31 @@ import java.util.Base64;
 
 public class PasswordUtil {
 
-    public static byte[] generateSalt(){
+    public static String generateSalt(){
         SecureRandom sr = new SecureRandom();
         byte[] salt = new byte[16];
         sr.nextBytes(salt);
-        return salt;
+        return encodeSalt(salt);
     }
 
-    public static String hashPassword(String password, byte[] salt){
+    private static String encodeSalt(byte[] salt) {
+        return Base64.getEncoder().encodeToString(salt);
+    }
+
+    private static byte[] decodeSalt(String encodedSalt) {
+        return Base64.getDecoder().decode(encodedSalt);
+    }
+
+    public static String hashPassword(String password, String salt){
         try {
 
+            byte[] byteSalt = decodeSalt(salt);
+
             MessageDigest md = MessageDigest.getInstance("SHA-256");
-            md.update(salt);
+            md.update(byteSalt);
             byte[] hashedPassword = md.digest(password.getBytes());
 
-            return Base64.getEncoder().encodeToString(hashedPassword) + ":" + Base64.getEncoder().encodeToString(salt);
+            return Base64.getEncoder().encodeToString(hashedPassword);
 
         }catch (NoSuchAlgorithmException exception){
             exception.printStackTrace();

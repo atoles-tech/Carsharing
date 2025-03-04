@@ -12,8 +12,10 @@ public class CarDTO {
     private Double totalEarned;
 
     private CarTypeDTO carType;
+    private CarClassDTO carClass;
 
-    public CarDTO(Integer id, String brand, String model, Double pricePerMinute, Double totalEarned, Integer totalRentalTime, CarTypeDTO carType) {
+    public CarDTO(Integer id, String brand, String model, Double pricePerMinute, Double totalEarned,
+                  Integer totalRentalTime, CarTypeDTO carType, CarClassDTO carClass) {
         this.brand = brand;
         this.id = id;
         this.model = model;
@@ -21,9 +23,26 @@ public class CarDTO {
         this.totalEarned = totalEarned;
         this.totalRentalTime = totalRentalTime;
         this.carType = carType;
+        this.carClass = carClass;
     }
 
     public CarDTO() {}
+
+    public CarClassDTO getCarClass() {
+        return carClass;
+    }
+
+    public void setCarClass(CarClassDTO carClass) {
+        this.carClass = carClass;
+    }
+
+    public CarTypeDTO getCarType() {
+        return carType;
+    }
+
+    public void setCarType(CarTypeDTO carType) {
+        this.carType = carType;
+    }
 
     public Double getPricePerMinute() {
         return pricePerMinute;

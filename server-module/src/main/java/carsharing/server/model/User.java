@@ -1,23 +1,39 @@
-package carsharing.common.model;
+package carsharing.server.model;
 
-import java.io.Serializable;
-import java.util.Arrays;
 
-public class UserDTO implements Serializable {
+import carsharing.common.model.UserDTO;
+import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Table(name="carsharing_user")
+public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(nullable = false, unique = true)
     private String login;
+
+    @Column(nullable = false)
     private String hashPassword;
+
+    @Column(nullable = false)
     private String salt;
 
     private String firstName;
     private String lastName;
 
+    @Column(name = "total_rental_time", nullable = false)
     private Integer totalRentalTime;
+
+    @Column(name = "total_spent", nullable = false)
     private Double totalSpent;
 
-    public UserDTO(Integer id, String firstName, String lastName, Integer totalRentalTime, Double totalSpent, String login, String hashPassword, String salt) {
+    public User(Integer id, String firstName, String lastName, Integer totalRentalTime, Double totalSpent, String login, String hashPassword, String salt) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -28,21 +44,23 @@ public class UserDTO implements Serializable {
         this.salt = salt;
     }
 
-    public UserDTO() {
+    public User() {
+        this.totalRentalTime = 0;
+        this.totalSpent = 0.;
     }
 
-    @Override
-    public String toString() {
-        return "UserDTO{" +
-                "firstName='" + firstName + '\'' +
-                ", id=" + id +
-                ", login='" + login + '\'' +
-                ", hashPassword='" + hashPassword + '\'' +
-                ", salt='" + salt + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", totalRentalTime=" + totalRentalTime +
-                ", totalSpent=" + totalSpent +
-                '}';
+    public UserDTO toUserDTO(){
+        return new UserDTO(id,firstName,lastName,totalRentalTime,totalSpent,login,hashPassword,salt);
+    }
+
+    public static List<UserDTO> listToUserDTO(List<User> users){
+        List<UserDTO> result = new ArrayList<>();
+
+        for(User u: users){
+            result.add(u.toUserDTO());
+        }
+
+        return result;
     }
 
     public String getSalt() {
